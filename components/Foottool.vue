@@ -5,7 +5,7 @@
                 class="tab_item"
                 v-for="tab in tabs"
                 :class="{'tab_active': $index === selected}"
-                @click="choose($index)">基本设置</span>
+                @click="choose($index)">{{tab.tabName}}</span>
         </div>
         <component :is="currentView" transition="fade" transition-mode="out-in"></component>
 
