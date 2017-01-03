@@ -17,7 +17,7 @@
     var rect = new fabric.Rect({
         top : 50,
         left : 100,
-        width : 1000,
+        width : 1100,
         height : 600,
         fill : 'red'
     });
