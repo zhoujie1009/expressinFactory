@@ -22,8 +22,8 @@ export default{
     data(){
         return{
             tabs:[
-                {tabName:"基本设置1"},
-                {tabName:"基本设置2"},
+                {tabName:"图片效果"},
+                {tabName:"高级效果"},
                 {tabName:"基本设置3"},
                 {tabName:"基本设置4"}
             ],

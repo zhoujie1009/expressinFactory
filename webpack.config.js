@@ -14,6 +14,14 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue'
+      },
+      {
+        test:/\.(png|gif|svg|jpeg)/,
+        loader:'url-loader',
+        query:{
+          limit:26000,
+          name:'[name].[ext]?[hash]'
+        }
       }
     ]
   },
