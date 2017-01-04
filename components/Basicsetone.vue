@@ -24,7 +24,7 @@
 	        let obj = canvas.getActiveObject();
 	       	obj.filters[index] = filter;
 		obj.applyFilters(canvas.renderAll.bind(canvas));
-	    }
+	    },
             basicfunc(type){
 		let obj = canvas.getActiveObject();
 	        if(type==="sketch"){
