@@ -16,7 +16,7 @@
         },
         methods:{
             setImg(){
-                var imgUrl = this.getObjectURL($('#addImg')[0].files[0])
+                var imgUrl = this.getObjectURL(document.getElementById('addImg').files[0]);
                 var randomVal1 = Math.random();
                 var randomVal2 = Math.random();
                 this.addImage(imgUrl,Math.min(randomVal1, randomVal2),Math.max(randomVal1, randomVal2));
