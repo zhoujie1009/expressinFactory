@@ -120,10 +120,12 @@ body,div {
 .item_content{
   display: flex;
   flex-direction: column;
+  flex-flow:row wrap;
+  justify-content:space-around;
   width: 300px;
 }
 .left_txt{
- 
+  width:80px;
 }
 .right_txt{
   width: 100px;
@@ -144,4 +146,20 @@ body,div {
 }
 .dn{
   display:none;
+}
+.basic_row{
+  height:60px;
+  line-height:60px;
+  display:flex;
+  flex:1;
+  flex-direction:row;
+  margin-top:20px;
+  background-color:'#eee'
+  cursor:pointer
+}
+.img_wrapper{
+  height:60px;
+  width:100px;
+  border-radius:10px;
+  border:none;
 }

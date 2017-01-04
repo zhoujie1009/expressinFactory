@@ -9,10 +9,9 @@
 	</div>
 </template>
 <script>
-  var canvas;
   var getRandomInt;
   window.onload = function() {
-    canvas = new fabric.Canvas('canvas');
+    window.canvas = new fabric.Canvas('canvas');
     getRandomInt = fabric.util.getRandomInt;
     var rect = new fabric.Rect({
         top : 50,
