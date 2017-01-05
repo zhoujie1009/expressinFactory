@@ -39,6 +39,7 @@
                   image.set({
                     left: coord.left,
                     top: coord.top,
+                    type: 'image',
                     angle: fabric.util.getRandomInt(-10, 10)
                   })
                   .scale(_this.getRandomNum(minScale, maxScale))
