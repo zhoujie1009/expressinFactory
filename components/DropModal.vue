@@ -7,7 +7,6 @@
         </div>
       </div>
       <div class="col-md-3">
-        <!-- <h3 class="page-header">Preview:</h3> -->
         <div class="docs-preview clearfix" style="min-height:250px;">
           <div class="img-preview preview-lg" id="drop_lg_img"></div>
           <div class="img-preview preview-md"></div>
@@ -51,9 +50,10 @@
           <button type="button" class="btn btn-primary btn-block dropdown-toggle">
             确认
           </button>
-          <button type="button" class="btn btn-primary btn-block dropdown-toggle" @click="saveImg()">
+          <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-widget-ele="saveImg" @click="saveImg()">
             保存
           </button>
+        </button>
         </div>
       </div>
     </div>
