@@ -9,7 +9,7 @@
       <div class="col-md-3">
         <!-- <h3 class="page-header">Preview:</h3> -->
         <div class="docs-preview clearfix" style="min-height:250px;">
-          <div class="img-preview preview-lg"></div>
+          <div class="img-preview preview-lg" id="drop_lg_img"></div>
           <div class="img-preview preview-md"></div>
           <div class="img-preview preview-sm"></div>
           <div class="img-preview preview-xs"></div>
@@ -48,10 +48,10 @@
         </div>
 
         <div class="dropdown dropup docs-options" style="display:block;margin-top:20px;">
-          <button class="btn btn-primary btn-block dropdown-toggle">
+          <button type="button" class="btn btn-primary btn-block dropdown-toggle">
             确认
           </button>
-          <button class="btn btn-primary btn-block dropdown-toggle">
+          <button type="button" class="btn btn-primary btn-block dropdown-toggle" @click="saveImg()">
             保存
           </button>
         </div>

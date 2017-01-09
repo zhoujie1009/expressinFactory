@@ -35,6 +35,12 @@
                 document.getElementById('modalBox').style.display = 'block';
                 this.handleDrop();
             },
+            saveImg(){
+              debugger
+                var imgSrc = document.getElementById('drop_lg_img').down('img').getAttribute();
+                document.getElementById('modalBox').style.display = 'none';
+
+            },
             closeModal(){
                 document.getElementById('modalBox').style.display = 'none';
             },
@@ -57,130 +63,91 @@
                   }
                 };
 
-            $image.on({
-              'build.cropper': function (e) {
-                console.log(e.type);
-              },
-              'built.cropper': function (e) {
-                console.log(e.type);
-              },
-              'dragstart.cropper': function (e) {
-                console.log(e.type, e.dragType);
-              },
-              'dragmove.cropper': function (e) {
-                console.log(e.type, e.dragType);
-              },
-              'dragend.cropper': function (e) {
-                console.log(e.type, e.dragType);
-              },
-              'zoomin.cropper': function (e) {
-                console.log(e.type);
-              },
-              'zoomout.cropper': function (e) {
-                console.log(e.type);
-              }
-            }).cropper(options);
+                $image.on({
+                  'build.cropper': function (e) {
+                    console.log(e.type);
+                  },
+                  'built.cropper': function (e) {
+                    console.log(e.type);
+                  },
+                  'dragstart.cropper': function (e) {
+                    console.log(e.type, e.dragType);
+                  },
+                  'dragmove.cropper': function (e) {
+                    console.log(e.type, e.dragType);
+                  },
+                  'dragend.cropper': function (e) {
+                    console.log(e.type, e.dragType);
+                  },
+                  'zoomin.cropper': function (e) {
+                    console.log(e.type);
+                  },
+                  'zoomout.cropper': function (e) {
+                    console.log(e.type);
+                  }
+                }).cropper(options);
 
+                // Methods
+                $(document.body).on('click', '[data-method]', function () {
+                  var data = $(this).data(),
+                      $target,
+                      result;
 
-            // Methods
-            $(document.body).on('click', '[data-method]', function () {
-              var data = $(this).data(),
-                  $target,
-                  result;
+                  if (data.method) {
+                    data = $.extend({}, data); // Clone a new one
 
-              if (data.method) {
-                data = $.extend({}, data); // Clone a new one
+                    if (typeof data.target !== 'undefined') {
+                      $target = $(data.target);
 
-                if (typeof data.target !== 'undefined') {
-                  $target = $(data.target);
-
-                  if (typeof data.option === 'undefined') {
-                    try {
-                      data.option = JSON.parse($target.val());
-                    } catch (e) {
-                      console.log(e.message);
+                      if (typeof data.option === 'undefined') {
+                        try {
+                          data.option = JSON.parse($target.val());
+                        } catch (e) {
+                          console.log(e.message);
+                        }
+                      }
                     }
+
+                    result = $image.cropper(data.method, data.option);
+
+                    if (data.method === 'getCroppedCanvas') {
+                      $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
+                    }
+
+                    if ($.isPlainObject(result) && $target) {
+                      try {
+                        $target.val(JSON.stringify(result));
+                      } catch (e) {
+                        console.log(e.message);
+                      }
+                    }
+
                   }
-                }
+                }).on('keydown', function (e) {
 
-                result = $image.cropper(data.method, data.option);
+                  switch (e.which) {
+                    case 37:
+                      e.preventDefault();
+                      $image.cropper('move', -1, 0);
+                      break;
 
-                if (data.method === 'getCroppedCanvas') {
-                  $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
-                }
+                    case 38:
+                      e.preventDefault();
+                      $image.cropper('move', 0, -1);
+                      break;
 
-                if ($.isPlainObject(result) && $target) {
-                  try {
-                    $target.val(JSON.stringify(result));
-                  } catch (e) {
-                    console.log(e.message);
+                    case 39:
+                      e.preventDefault();
+                      $image.cropper('move', 1, 0);
+                      break;
+
+                    case 40:
+                      e.preventDefault();
+                      $image.cropper('move', 0, 1);
+                      break;
                   }
-                }
 
-              }
-            }).on('keydown', function (e) {
-
-              switch (e.which) {
-                case 37:
-                  e.preventDefault();
-                  $image.cropper('move', -1, 0);
-                  break;
-
-                case 38:
-                  e.preventDefault();
-                  $image.cropper('move', 0, -1);
-                  break;
-
-                case 39:
-                  e.preventDefault();
-                  $image.cropper('move', 1, 0);
-                  break;
-
-                case 40:
-                  e.preventDefault();
-                  $image.cropper('move', 0, 1);
-                  break;
-              }
-
-            });
-
-
-            // Import image
-            var $inputImage = $('#inputImage'),
-                URL = window.URL || window.webkitURL,
-                blobURL;
-
-            if (URL) {
-              $inputImage.change(function () {
-                var files = this.files,
-                    file;
-
-                if (files && files.length) {
-                  file = files[0];
-
-                  if (/^image\/\w+$/.test(file.type)) {
-                    blobURL = URL.createObjectURL(file);
-                    $image.one('built.cropper', function () {
-                      URL.revokeObjectURL(blobURL); // Revoke when load complete
-                    }).cropper('reset', true).cropper('replace', blobURL);
-                    $inputImage.val('');
-                  } else {
-                    showMessage('Please choose an image file.');
-                  }
-                }
-              });
-            } else {
-              $inputImage.parent().remove();
-            }
-
-
-            // Options
-            $('.docs-options :checkbox').on('change', function () {
-              var $this = $(this);
-
-              options[$this.val()] = $this.prop('checked');
-              $image.cropper('destroy').cropper(options);
-            });
+                });
             }
         }
     }
