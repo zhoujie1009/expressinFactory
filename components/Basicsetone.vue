@@ -5,10 +5,19 @@
                 <span class="left_txt">原图效果：</span>
                 <img src="../css/demo/e5.png" class="img_wrapper" alt />
             </div>
-            <div class="basic_row" @click="basicfunc('sketch')">
-                <span class="left_txt">素描效果：</span>
+            <div class="basic_row" @click="basicfunc('grayscale')">
+                <span class="left_txt">灰度效果：</span>
                 <img src="../css/demo/e5.png" class="img_wrapper" alt />
             </div>
+	     <div class="basic_row" @click="basicfunc('pixelate')">
+                <span class="left_txt">像素化效果：</span>
+                <img src="../css/demo/e5.png" class="img_wrapper" alt />
+            </div>
+	     <div class="basic_row" @click="basicfunc('removewhite')">
+                <span class="left_txt">去重白效果：</span>
+                <img src="../css/demo/e5.png" class="img_wrapper" alt />
+            </div>
+	    
         </div>
     </div>
 </template>
@@ -21,18 +30,28 @@
         },
         methods:{
             applyFilter(indx,filter){
-	        let obj = canvas.getActiveObject();
+	        let obj = canvas.getActiveObject() ?canvas.getActiveObject():canvas.getActiveGroup();
 	       	obj.filters[index] = filter;
 		obj.applyFilters(canvas.renderAll.bind(canvas));
 	    },
             basicfunc(type){
-		let obj = canvas.getActiveObject();
-	        if(type==="sketch"){
-		   obj.grayscale = new f.grayscale();
-		   obj.applyFilters(canvas.renderAll.bind(canvas));
+		let obj = canvas;
+		let objects = canvas._objects;
+		let target,filter;
+		for(let i=0;i<objects.length;i++){
+		    if(objects[i].type === 'image'){
+			target = objects[i];
+		    }
 		}
-               //let imgTarget;
-	      console.log(type+'------'); 
+	        if(type==="grayscale"){	
+                   filter = new fabric.Image.filters.Grayscale();
+		}else if(type === 'removewhite'){
+		   filter = new fabric.Image.filters.RemoveWhite();
+		}else if(type === 'pixelate'){
+		   filter = new fabric.Image.filters.Pixelate(); 	
+		}
+		target.filters.push(filter);
+		target.applyFilters(canvas.renderAll.bind(canvas));
             }
         }
     }

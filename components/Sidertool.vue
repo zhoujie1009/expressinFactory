@@ -49,7 +49,8 @@
           image.set({
             left: coord.left,
             top: coord.top,
-            angle: getRandomInt(-10, 10)
+            angle: getRandomInt(-10, 10),
+	    type:'image'
           })
           .scale(getRandomNum(minScale, maxScale))
           .setCoords();
