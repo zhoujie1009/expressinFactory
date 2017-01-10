@@ -4,7 +4,8 @@
           <input type="file" id="addImg" class="addImg" @change="setImg()">
         </span>
         <span class="mr40" @click="rasterize()"><i class="fa fa-sign-out mr10"></i>导出</span> 
-        <span class="btn_item mr40" @click="drop()"><i class="fa fa-crop mr10"></i>裁剪</span>     
+        <span class="btn_item mr40" @click="drop()"><i class="fa fa-crop mr10"></i>裁剪</span>
+        <span class="btn_item mr40" @click="clearCanvas()"><i class="fa fa-crop mr10"></i>清空</span>     
     </div>
 	<div class="modal fade bs-example-modal-lg in" id="modalBox">
       <div class="modal-backdrop fade in" style="z-index:0;"></div>
@@ -25,13 +26,25 @@
     export default{
         data(){
             return {
-
+               zIndex:1,
+               modalImg:null,
+               modalImgw:null,
+               modalImgh:null,
+               modalPleft:null,
+               modalPtop:null,
+               modalCanvas:null,
+               modalCropw:null,
+               modalCroph:null,
+               modalCtx:null
             }
         },
         components: {
             DropModal
         },
         methods:{
+            clearCanvas(){
+              canvas.clear();
+            },
             setImg(){
                 var imgUrl = this.getObjectURL(document.getElementById('addImg').files[0]);
                 var randomVal1 = Math.random();
@@ -54,16 +67,19 @@
                 var coord = _this.getRandomLeftTop();
                 fabric.Image.fromURL(imgAdd, function(image) {
                   image.set({
-                    left: coord.left,
-                    top: coord.top,
+                    left: 0,
+                    top: 0,
                     type: 'image',
-                    angle: fabric.util.getRandomInt(-10, 10)
+                    index:_this.zIndex
+                    //angle: fabric.util.getRandomInt(-10, 10)
                   })
                   .scale(_this.getRandomNum(minScale, maxScale))
                   .setCoords();
                   canvas.add(image);
                 });
-                this.uploadTime = 0;
+                //this.uploadTime = 0;
+                _this.zIndex += 1 ;
+                window.globaIndex = _this.zIndex;
             },
             getRandomNum(min, max) {
                 return Math.random() * (max - min) + min;
@@ -98,55 +114,71 @@
             closeModal(){
                 document.getElementById('modalBox').style.display = 'none';
             },
+            //裁剪图片时临时保存的一些数据
+            handModalImg(){
+              var _this = this;
+              var $image = $('.img-container > img');
+              var url = $image.eq(0).attr("src");
+              var canvasdata = $image.cropper("getCanvasData");
+              var cropdata = $image.cropper('getCropBoxData');
+              _this.modalCropw = cropdata.width; // 剪切的宽
+              _this.modalCroph = cropdata.height; // 剪切的宽
+              _this.modalImgw = canvasdata.width; // 图片缩放或则放大后的高
+              _this.modalImgh = canvasdata.height; // 图片缩放或则放大后的高
+              
+              _this.modalPleft = canvasdata.left - cropdata.left; // canvas定位图片的左边位置
+              _this.modalPtop = canvasdata.top - cropdata.top; // canvas定位图片的上边位置
+              
+              var canvas = document.createElement("canvas");
+              _this.modalCtx = canvas.getContext('2d');
+              
+              canvas.width = cropdata.width;
+              canvas.height = cropdata.height;
+              
+              var img = new Image();
+              img.src = url;
+              _this.modalImg = img;
+              _this.modalCanvas = canvas;
+            },
+            //裁剪数据绑定的方法
             handleClick(){
-                $(document).undelegate("[data-widget-ele=saveImg]","click");
-                $(document).delegate("[data-widget-ele=saveImg]","click",function(){
-                    var $image = $('.img-container > img');
-                    var url = $image.eq(0).attr("src");
-                    var canvasdata = $image.cropper("getCanvasData");
-                    var cropdata = $image.cropper('getCropBoxData');
-                    var cropw = cropdata.width; // 剪切的宽
-                    var croph = cropdata.height; // 剪切的宽
-                    var imgw = canvasdata.width; // 图片缩放或则放大后的高
-                    var imgh = canvasdata.height; // 图片缩放或则放大后的高
-                    
-                    var poleft = canvasdata.left - cropdata.left; // canvas定位图片的左边位置
-                    var potop = canvasdata.top - cropdata.top; // canvas定位图片的上边位置
-                    
-                    var canvas = document.createElement("canvas");
-                    var ctx = canvas.getContext('2d');
-                    
-                    canvas.width = cropw;
-                    canvas.height = croph;
-                    
-                    var img = new Image();
-                    img.src = url;
-                    
-                    img.onload = function() {
-                        this.width = imgw;
-                        this.height = imgh;
-                            // 这里主要是懂得canvas与图片的裁剪之间的关系位置
-                        ctx.drawImage(this, poleft, potop, this.width, this.height);
-                        var base64 = canvas.toDataURL('image/jpg', 1);  // 这里的“1”是指的是处理图片的清晰度（0-1）之间，当然越小图片越模糊，处理后的图片大小也就越小
-                        //callback && callback(base64)      // 回调base64字符串
-                        //window.open(base64);
+                var _this = this; 
+                $(document).undelegate("[data-widget-ele=importImg]","click");
+                $(document).delegate("[data-widget-ele=importImg]","click",function(){
+                    _this.handModalImg();
+                    _this.modalImg.onload = function() {
+                        this.width = _this.modalImgw;
+                        this.height = _this.modalImgh;
+                        // 这里主要是懂得canvas与图片的裁剪之间的关系位置
+                        _this.modalCtx.drawImage(this, _this.modalPleft, _this.modalPtop, this.width, this.height);
+                        var base64 = _this.modalCanvas.toDataURL('image/jpg', 1);  
                         window.canvas.clear();
                         fabric.Image.fromURL(base64, function(image) {
                           image.set({
                             left: 0,
                             top: 0,
-                            width:cropw,
-                            height:croph,
+                            width:_this.modalCropw,
+                            height:_this.modalCroph,
                             type: 'image'
                           })
                           .setCoords();
                           window.canvas.add(image);
                         });
-                        this.uploadTime = 0;
                     }
                     document.getElementById('modalBox').style.display = 'none';
                 });
+                $(document).undelegate("[data-widget-ele=saveImg]","click");
+                $(document).delegate("[data-widget-ele=saveImg]","click",function(){
+                    _this.handModalImg();
+                    _this.modalImg.onload = function() {
+                        this.width = _this.modalImgw;
+                        this.height = _this.modalImgh;
+                        _this.modalCtx.drawImage(this, _this.modalPleft, _this.modalPtop, this.width, this.height);
+                        window.open(canvas.toDataURL('image/jpg', 1));
+                    }
+                });
             },
+            //缩放，裁剪，比例
             handleDrop(){
                 var $image = $('.img-container > img'),
                 $dataX = $('#dataX'),

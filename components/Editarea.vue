@@ -1,6 +1,6 @@
 <template>
   <div class="edit_area">
-  	<canvas id="canvas" width="800" height="600"></canvas>
+  	<canvas id="canvas" width="800" height="500"></canvas>
   </div>
 </template>
 <script type="text/javascript">
@@ -8,31 +8,16 @@
     window.canvas = new fabric.Canvas('canvas',{
       isDrawingMode:false
     });
-    var rect = new fabric.Rect({
-        top : 50,
-        left : 100,
-        width : 800,
-        height : 600,
-        fill : 'red'
-    });
-    canvas.add(rect);
-    canvas.clear();
-    canvas.remove(canvas.getActiveObject());
-    canvas.add(new fabric.Rect({
-      width: 50,
-      height: 50,
-      left: 50,
-      top: 50,
-      fill: 'rgb(255,0,0)'
-    }));
-
-    // add green, half-transparent circle
-    canvas.add(new fabric.Circle({
-      radius: 40,
-      left: 50,
-      top: 50,
-      fill: 'rgb(0,255,0)',
-      opacity: 0.5
-    }));
+    var copyCanvas = document.getElementById('copyCanvas');
+    copyCanvas.addEventListener('click', function(e){
+         var target = canvas.getActiveObject();
+         debugger
+         if(target){
+            target.index = window.globaIndex;
+            window.globaIndex += 1;
+         }else{
+            return;
+         }
+    }, false);
   }
 </script>

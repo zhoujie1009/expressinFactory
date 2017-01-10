@@ -9699,6 +9699,7 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
      */
     _copyCanvasStyle: function (fromEl, toEl) {
       toEl.style.cssText = fromEl.style.cssText;
+      toEl.setAttribute('id','copyCanvas');
     },
 
     /**

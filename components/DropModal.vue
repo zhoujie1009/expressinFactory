@@ -47,11 +47,11 @@
         </div>
 
         <div class="dropdown dropup docs-options" style="display:block;margin-top:20px;">
-          <button type="button" class="btn btn-primary btn-block dropdown-toggle">
-            确认
+          <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-widget-ele="importImg">
+            导入工作区
           </button>
-          <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-widget-ele="saveImg" @click="saveImg()">
-            保存
+          <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-widget-ele="saveImg">
+            保存图片
           </button>
         </button>
         </div>
