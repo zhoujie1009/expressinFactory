@@ -1,10 +1,7 @@
 <template>
     <div class="tab_body tab_body1">
         <div class="item_content">
-            <div class="basic_row" @click="basicfunc('invert')">
-                <span class="left_txt">反相效果：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />
-            </div>
+            
             <div class="basic_row" @click="basicfunc('saturate')" style="height:130px;">
                 <span class="left_txt">饱和度效果：</span>
                 <img src="../css/demo/e5.png" class="img_wrapper" alt />
@@ -12,20 +9,21 @@
                 <label>Value: <input type="range" value="100" min="-200" max="100" v-model="saturateVal"></label>
                 <br>
             </div>
-            <div class="basic_row" @click="basicfunc('emboss')">
-                <span class="left_txt">浮雕效果：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />
-            </div>
-            <div class="basic_row" @click="basicfunc('sharpen')">
-                <span class="left_txt">锐化效果：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />
-            </div>
-            <div class="basic_row" @click="basicfunc('contrast')">
+            
+            <div class="basic_row" @click="basicfunc('contrast')" style="height:130px;">
                 <span class="left_txt">对比度：</span>
                 <img src="../css/demo/e5.png" class="img_wrapper" alt />
                 <br>
                 <label>Value: <input type="range" value="0" min="-255" max="255" v-model="contrastVal"></label>
                 <br>
+            </div>
+            <div class="basic_row" @click="basicfunc('removewhite')">
+                <span class="left_txt">去重白效果：</span>
+                <img src="../css/demo/e5.png" class="img_wrapper" alt />
+                <br>
+                <label>Threshold: <input type="range" v-model="thresholdVal" value="60" min="0" max="255"></label>
+                <br>
+                <label>Distance: <input type="range" v-model="distanceVal" value="10" min="0" max="255"></label>
             </div>
         </div>
     </div>
@@ -77,7 +75,49 @@
                     target.filters[0].saturate = val;
                 }
                
+            },
+            thresholdVal(val){
+                let objects = canvas._objects;
+                let target;
+                target = canvas.getActiveObject();
+                if(!target){
+                    for(let i=0;i<objects.length;i++){
+                        if(objects[i].type === 'image'){
+                            target = objects[i];
+                        }
+                    }    
+                }
+                
+                if(!target){
+                    return;
+                }
+                
+                if(this.filterType === 'removewhite'){
+                    target.filters[0].threshold = val;
+                }
+                target.applyFilters(canvas.renderAll.bind(canvas));
+
+            },
+            distanceVal(val){
+                let objects = canvas._objects;
+                let target;
+                target = canvas.getActiveObject();
+                if(!target){
+                    for(let i=0;i<objects.length;i++){
+                        if(objects[i].type === 'image'){
+                            target = objects[i];
+                        }
+                    }
+                }
+                if(!target){
+                    return;
+                }
+                if(this.filterType === 'removewhite'){
+                    target.filters[0].distance = val;
+                }
+                 target.applyFilters(canvas.renderAll.bind(canvas));
             }
+
         },
         methods:{
             applyFilter(indx,filter){
@@ -104,36 +144,20 @@
                 if(type === 'origin'){
                     target.filters = [];
                 }else{
-                    if(type==="invert"){	
-                        //反相
-                        filter = new this.f.Invert();
-                    }else if(type === 'saturate'){
+                    if(type === 'saturate'){
                         //滤镜
                         filter = new this.f.Saturate({
                             saturate:this.saturateVal        
                         });
-                    }else if(type === 'sharpen'){
-                        //锐化
-                        filter = new this.f.Convolute({
-                            matrix:[
-                                0,-1,0,
-                                -1,5,-1,
-                                0,-1,0
-                            ]        
-                        });
-                    }else if(type === 'emboss'){
-                        //浮雕
-                        filter = new this.f.Convolute({
-                            matrix:[
-                                1,1,1,
-                                1,0.7,-1,
-                                -1,-1,-1
-                            ]
-                        });    
                     }else if(type === "contrast"){
                         //对比度
                        filter = new this.f.Contrast({
                             contrast:this.contrastVal
+                        });
+                    }else if(type === 'removewhite'){
+                        filter = new fabric.Image.filters.RemoveWhite({
+                            threshold:this.thresholdVal,
+                            distance:this.distanceVal
                         });
                     }
                     target.filters = [];

@@ -13,14 +13,18 @@
                 <span class="left_txt">马赛克效果：</span>
                 <img src="../css/demo/e5.png" class="img_wrapper" alt />
             </div>
-	     <div class="basic_row" @click="basicfunc('removewhite')">
-                <span class="left_txt">去重白效果：</span>
+            <div class="basic_row" @click="basicfunc('emboss')">
+                <span class="left_txt">浮雕效果：</span>
                 <img src="../css/demo/e5.png" class="img_wrapper" alt />
             </div>
-            <br>
-            <label>Threshold: <input type="range" v-model="thresholdVal" value="60" min="0" max="255"></label>
-            <br>
-	        <label>Distance: <input type="range" v-model="distanceVal" value="10" min="0" max="255"></label>
+            <div class="basic_row" @click="basicfunc('sharpen')">
+                <span class="left_txt">锐化效果：</span>
+                <img src="../css/demo/e5.png" class="img_wrapper" alt />
+            </div>
+            <div class="basic_row" @click="basicfunc('invert')">
+                <span class="left_txt">反相效果：</span>
+                <img src="../css/demo/e5.png" class="img_wrapper" alt />
+            </div>
         </div>
     </div>
 </template>
@@ -35,47 +39,7 @@
             }
         },
         watch:{
-            thresholdVal(val){
-                let objects = canvas._objects;
-                let target;
-                target = canvas.getActiveObject();
-                if(!target){
-                    for(let i=0;i<objects.length;i++){
-                        if(objects[i].type === 'image'){
-                            target = objects[i];
-                        }
-                    }    
-                }
-                
-                if(!target){
-                    return;
-                }
-                
-                if(this.filterType === 'removewhite'){
-                    target.filters[0].threshold = val;
-                }
-                target.applyFilters(canvas.renderAll.bind(canvas));
-
-            },
-            distanceVal(val){
-                let objects = canvas._objects;
-                let target;
-                target = canvas.getActiveObject();
-                if(!target){
-                    for(let i=0;i<objects.length;i++){
-                        if(objects[i].type === 'image'){
-                            target = objects[i];
-                        }
-                    }
-                }
-                if(!target){
-                    return;
-                }
-                if(this.filterType === 'removewhite'){
-                    target.filters[0].distance = val;
-                }
-                 target.applyFilters(canvas.renderAll.bind(canvas));
-            }
+            
         },
         methods:{
             applyFilter(indx,filter){
@@ -105,13 +69,29 @@
                 }else{
                     if(type==="grayscale"){	
                         filter = new fabric.Image.filters.Grayscale();
-                    }else if(type === 'removewhite'){
-                        filter = new fabric.Image.filters.RemoveWhite({
-                            threshold:this.thresholdVal,
-                            distance:this.distanceVal
-                        });
                     }else if(type === 'pixelate'){
                         filter = new fabric.Image.filters.Pixelate(); 	
+                    }else if(type === 'emboss'){
+                        //浮雕
+                        filter = new this.f.Convolute({
+                            matrix:[
+                                1,1,1,
+                                1,0.7,-1,
+                                -1,-1,-1
+                            ]
+                        });    
+                    }else if(type === 'sharpen'){
+                        //锐化
+                        filter = new this.f.Convolute({
+                            matrix:[
+                                0,-1,0,
+                                -1,5,-1,
+                                0,-1,0
+                            ]        
+                        });
+                    }else if(type==="invert"){	
+                        //反相
+                        filter = new this.f.Invert();
                     }
                     target.filters = [];
                     target.filters.push(filter);
