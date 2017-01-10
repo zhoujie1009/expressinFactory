@@ -69,17 +69,13 @@
                   image.set({
                     left: 0,
                     top: 0,
-                    type: 'image',
-                    index:_this.zIndex
+                    type: 'image'
                     //angle: fabric.util.getRandomInt(-10, 10)
                   })
                   .scale(_this.getRandomNum(minScale, maxScale))
                   .setCoords();
                   canvas.add(image);
                 });
-                //this.uploadTime = 0;
-                _this.zIndex += 1 ;
-                window.globaIndex = _this.zIndex;
             },
             getRandomNum(min, max) {
                 return Math.random() * (max - min) + min;
