@@ -13,9 +13,13 @@ body,div {
   margin-right: 10px;
 }
 .wrapper{
-  display: flex;
-  flex-direction: column;
-  height: 950px;
+	display: flex;
+	flex-direction: column;
+	height: 700px;
+}
+.row{
+	display: flex;
+	flex-direction: row;	
 }
 .nav{
   height: 50px;
@@ -61,13 +65,13 @@ body,div {
   padding-right: 10px;
 }
 .btn_area{
-  display: flex;
-  flex-direction: row;
-  height: 50px;
-  line-height: 50px;
-  justify-content: flex-end;
-  font-size: 14px;
-  border-bottom: 1px solid #ddd;
+	display: flex;
+	flex-direction: row;
+	height: 50px;
+	line-height: 50px;
+	justify-content: flex-start;
+	font-size: 14px;
+	border-bottom: 1px solid #ddd;
 }
 .btn_item{
   cursor: pointer;
@@ -76,28 +80,34 @@ body,div {
   color: red;
 }
 .edit_area{
-  height: 600px;
-  border: 1px solid #ddd;
-  margin-top: 10px;
-  box-shadow: 5px 5px 5px #eee;
+	height: 650px;
+	width: 900px;
+	border: 1px solid #ddd;
+	margin-top: 10px;
+	box-shadow: 0px 5px 5px #eee;
 }
 .magic_area{
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
+	flex: 1;
+	height: 650px;
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	margin-left: 5px;
+	color: #fff;
+	background-color: #344853;
 }
 .setting_tab{
-  height: 25px;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  border-bottom: 3px solid #eee;
-  margin-bottom: 20px;
+	height: 45px;
+	line-height: 45px;
+	display: flex;
+	flex-direction: row;
+	border-bottom: 3px solid #293a42;	
+	background-color: #293a42;
+	color: #fff;
 }
 .tab_item{
-  padding-left: 20px;
-  padding-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 .tab_item:hover{
   color: #ff0000;
@@ -115,14 +125,13 @@ body,div {
   line-height: 30px;
   display: flex;
   flex-direction: row;
-  background-color: #eee;
 }
 .item_content{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-flow:row wrap;
   justify-content:space-around;
-  width: 300px;
+  width: 200px;
 }
 .left_txt{
   width:80px;
@@ -137,12 +146,13 @@ body,div {
     opacity: 0;
     filter: alpha(opacity=0);
     position: relative;
-    width: 111px;
+    width: 75px;
     z-index: 2;
 }
 .importImg{
   background: url('static/bg1.png');
   cursor:pointer;
+  margin-top: 5px;
 }
 .dn{
   display:none;
@@ -150,12 +160,9 @@ body,div {
 .basic_row{
   height:60px;
   line-height:60px;
-  display:flex;
-  flex:1;
-  flex-direction:row;
   margin-top:20px;
-  background-color:'#eee'
-  cursor:pointer
+  background-color:'#eee';
+  cursor:pointer;
 }
 .img_wrapper{
   height:60px;
