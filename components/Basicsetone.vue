@@ -38,14 +38,19 @@
             thresholdVal(val){
                 let objects = canvas._objects;
                 let target;
-                for(let i=0;i<objects.length;i++){
-                    if(objects[i].type === 'image'){
-                        target = objects[i];
-                    }
+                target = canvas.getActiveObject();
+                if(!target){
+                    for(let i=0;i<objects.length;i++){
+                        if(objects[i].type === 'image'){
+                            target = objects[i];
+                        }
+                    }    
                 }
+                
                 if(!target){
                     return;
                 }
+                
                 if(this.filterType === 'removewhite'){
                     target.filters[0].threshold = val;
                 }
@@ -55,9 +60,12 @@
             distanceVal(val){
                 let objects = canvas._objects;
                 let target;
-                for(let i=0;i<objects.length;i++){
-                    if(objects[i].type === 'image'){
-                        target = objects[i];
+                target = canvas.getActiveObject();
+                if(!target){
+                    for(let i=0;i<objects.length;i++){
+                        if(objects[i].type === 'image'){
+                            target = objects[i];
+                        }
                     }
                 }
                 if(!target){
@@ -79,11 +87,15 @@
                 let obj = canvas;
                 let objects = canvas._objects;
                 let target,filter;
-                for(let i=0;i<objects.length;i++){
-                    if(objects[i].type === 'image'){
-                        target = objects[i];
+                target = canvas.getActiveObject();
+                if(!target){
+                    for(let i=0;i<objects.length;i++){
+                        if(objects[i].type === 'image'){
+                            target = objects[i];
+                        }
                     }
                 }
+                
                 if(!target){
                     return;
                 }

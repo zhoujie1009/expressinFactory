@@ -44,9 +44,12 @@
             contrastVal(val){
                 let objects = canvas._objects;
                 let target;
-                for(let i=0;i<objects.length;i++){
-                    if(objects[i].type === 'image'){
-                        target = objects[i];
+                target = canvas.getActiveObject();
+                if(!target){
+                    for(let i=0;i<objects.length;i++){
+                        if(objects[i].type === 'image'){
+                            target = objects[i];
+                        }
                     }
                 }
                 if(!target){
@@ -55,14 +58,16 @@
                 if(this.filterType === 'contrast'){
                     target.filters[0].contrast = val;
                 }
-                target.applyFilters(canvas.renderAll.bind(canvas));
             },
             saturateVal(val){
                 let objects = canvas._objects;
                 let target;
-                for(let i=0;i<objects.length;i++){
-                    if(objects[i].type === 'image'){
-                        target = objects[i];
+                target = canvas.getActiveObject();
+                if(!target){
+                    for(let i=0;i<objects.length;i++){
+                        if(objects[i].type === 'image'){
+                            target = objects[i];
+                        }
                     }
                 }
                 if(!target){
@@ -71,7 +76,7 @@
                 if(this.filterType === 'saturate'){
                     target.filters[0].saturate = val;
                 }
-                target.applyFilters(canvas.renderAll.bind(canvas));
+               
             }
         },
         methods:{
@@ -84,9 +89,12 @@
                 let obj = canvas;
                 let objects = canvas._objects;
                 let target,filter;
-                for(let i=0;i<objects.length;i++){
-                    if(objects[i].type === 'image'){
-                        target = objects[i];
+                target = canvas.getActiveObject();
+                if(!target){
+                    for(let i=0;i<objects.length;i++){
+                        if(objects[i].type === 'image'){
+                            target = objects[i];
+                        }
                     }
                 }
                 if(!target){
