@@ -70,7 +70,6 @@
                     left: 0,
                     top: 0,
                     type: 'image'
-                    //angle: fabric.util.getRandomInt(-10, 10)
                   })
                   .scale(_this.getRandomNum(minScale, maxScale))
                   .setCoords();
@@ -88,10 +87,12 @@
                 };
             },
             rasterize() {
+                var _this = this;
                 if (!fabric.Canvas.supports('toDataURL')) {
                     alert('This browser doesn\'t provide means to serialize canvas to an image');
                 }else {
                     window.open(canvas.toDataURL('png'));
+                    _this.saveAs(canvas.toDataURL('png'),"new.png");
                 }
             },
             rasterizeSVG() {
@@ -170,9 +171,22 @@
                         this.width = _this.modalImgw;
                         this.height = _this.modalImgh;
                         _this.modalCtx.drawImage(this, _this.modalPleft, _this.modalPtop, this.width, this.height);
-                        window.open(canvas.toDataURL('image/jpg', 1));
+                        var base64 = canvas.toDataURL('image/jpg', 1);
+                        var preWindow = window.open(base64);
+                        _this.saveAs(base64,"new.png");
                     }
                 });
+            },
+            saveAs(Url,filename){
+                  var blob=new Blob([''], {type:'application/octet-stream'});
+                  var url = URL.createObjectURL(blob);
+                  var a = document.createElementNS("http://www.w3.org/1999/xhtml",'a');
+                  a.href = Url;
+                  a.download = filename;
+                  var e = document.createEvent('MouseEvents');
+                  e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                  a.dispatchEvent(e);
+                  URL.revokeObjectURL(url);
             },
             //缩放，裁剪，比例
             handleDrop(){
