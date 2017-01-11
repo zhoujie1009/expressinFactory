@@ -16,7 +16,7 @@
 import Basicsetone from './Basicsetone.vue'
 import Basicsettwo from './Basicsettwo.vue'
 import Basicsetthree from './Basicsetthree.vue'
-import Basicsetfour from './Basicsetfour.vue'
+//import Basicsetfour from './Basicsetfour.vue'
 
 export default{
     data(){
@@ -24,8 +24,7 @@ export default{
             tabs:[
                 {tabName:"图片效果"},
                 {tabName:"高级效果"},
-                {tabName:"表情涂鸦"},
-                {tabName:"基本设置4"}
+                {tabName:"表情涂鸦"}
             ],
             selected:0,
             currentView:'set_tab_0'
@@ -40,8 +39,7 @@ export default{
     components:{
         'set_tab_0':Basicsetone,
         'set_tab_1':Basicsettwo,
-        'set_tab_2':Basicsetthree,
-        'set_tab_3':Basicsetfour
+        'set_tab_2':Basicsetthree
     }
 }
 </script>

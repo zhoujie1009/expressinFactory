@@ -30,6 +30,8 @@
                 contrastVal:0,
                 saturateVal:100,
                 filterType:'',
+                thresholdVal:60,
+                distanceVal:10,
             }
         },
         watch:{

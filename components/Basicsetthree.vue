@@ -8,7 +8,7 @@
                     <br>
                     <label for="drawing-mode-selector">Mode:</label>
                     <select style="color:black" v-model="selectMode">
-                        <option v-for="mode in modes" v-bind:value="{{mode}}">
+                        <option v-for="mode in modes">
                             {{mode}}    
                         </option>                 
                     </select>

@@ -33,8 +33,6 @@
         data(){
             return {
 		        f:fabric.Image.filters,
-                thresholdVal:60,
-                distanceVal:10,
                 filterType:""
             }
         },

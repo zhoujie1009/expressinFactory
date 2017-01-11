@@ -5,7 +5,8 @@
         </span>
         <span class="btn_item mr40" @click="rasterize()"><i class="fa fa-sign-out mr10"></i>导出</span> 
         <span class="btn_item mr40" @click="drop()"><i class="fa fa-crop mr10"></i>裁剪</span>
-        <span class="btn_item mr40" @click="clearCanvas()"><i class="fa fa-square-o mr10"></i>清空</span>     
+        <span class="btn_item mr40" @click="clearCanvas()"><i class="fa fa-square-o mr10"></i>清空</span>    
+        <span class="btn_item mr40" @click="addText()"><i class="fa fa-text-width mr10"></i>文字</span> 
     </div>
 	<div class="modal fade bs-example-modal-lg in" id="modalBox">
       <div class="modal-backdrop fade in" style="z-index:0;"></div>
@@ -44,6 +45,21 @@
         methods:{
             clearCanvas(){
               canvas.clear();
+            },
+            addText(){
+                let text = new fabric.IText('此处编辑文字',{
+                    left: 10,
+                    top: 20,
+                    fontFamily: 'Courier',
+                    fill: '#000000',
+                    type:'font',
+                    fontSize:16,
+                    textAlign:'center',
+                    isEditing:true,
+                    styles:{
+                    }
+                });
+                canvas.add(text);
             },
             setImg(){
                 var imgUrl = this.getObjectURL(document.getElementById('addImg').files[0]);
