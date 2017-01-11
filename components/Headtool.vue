@@ -1,11 +1,11 @@
 <template>
     <div class="btn_area">
-        <span class="importImg mr40">
+        <span class="btn_item importImg mr40">
           <input type="file" id="addImg" class="addImg" @change="setImg()">
         </span>
-        <span class="mr40" @click="rasterize()"><i class="fa fa-sign-out mr10"></i>导出</span> 
+        <span class="btn_item mr40" @click="rasterize()"><i class="fa fa-sign-out mr10"></i>导出</span> 
         <span class="btn_item mr40" @click="drop()"><i class="fa fa-crop mr10"></i>裁剪</span>
-        <span class="btn_item mr40" @click="clearCanvas()"><i class="fa fa-crop mr10"></i>清空</span>     
+        <span class="btn_item mr40" @click="clearCanvas()"><i class="fa fa-square-o mr10"></i>清空</span>     
     </div>
 	<div class="modal fade bs-example-modal-lg in" id="modalBox">
       <div class="modal-backdrop fade in" style="z-index:0;"></div>
@@ -69,17 +69,12 @@
                   image.set({
                     left: 0,
                     top: 0,
-                    type: 'image',
-                    index:_this.zIndex
-                    //angle: fabric.util.getRandomInt(-10, 10)
+                    type: 'image'
                   })
                   .scale(_this.getRandomNum(minScale, maxScale))
                   .setCoords();
                   canvas.add(image);
                 });
-                //this.uploadTime = 0;
-                _this.zIndex += 1 ;
-                window.globaIndex = _this.zIndex;
             },
             getRandomNum(min, max) {
                 return Math.random() * (max - min) + min;
@@ -92,10 +87,12 @@
                 };
             },
             rasterize() {
+                var _this = this;
                 if (!fabric.Canvas.supports('toDataURL')) {
                     alert('This browser doesn\'t provide means to serialize canvas to an image');
                 }else {
                     window.open(canvas.toDataURL('png'));
+                    _this.saveAs(canvas.toDataURL('png'),"new.png");
                 }
             },
             rasterizeSVG() {
@@ -174,9 +171,22 @@
                         this.width = _this.modalImgw;
                         this.height = _this.modalImgh;
                         _this.modalCtx.drawImage(this, _this.modalPleft, _this.modalPtop, this.width, this.height);
-                        window.open(canvas.toDataURL('image/jpg', 1));
+                        var base64 = canvas.toDataURL('image/jpg', 1);
+                        var preWindow = window.open(base64);
+                        _this.saveAs(base64,"new.png");
                     }
                 });
+            },
+            saveAs(Url,filename){
+                  var blob=new Blob([''], {type:'application/octet-stream'});
+                  var url = URL.createObjectURL(blob);
+                  var a = document.createElementNS("http://www.w3.org/1999/xhtml",'a');
+                  a.href = Url;
+                  a.download = filename;
+                  var e = document.createEvent('MouseEvents');
+                  e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                  a.dispatchEvent(e);
+                  URL.revokeObjectURL(url);
             },
             //缩放，裁剪，比例
             handleDrop(){

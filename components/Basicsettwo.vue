@@ -2,29 +2,23 @@
     <div class="tab_body tab_body1">
         <div class="item_content">
             
-            <div class="basic_row" @click="basicfunc('saturate')" style="height:130px;">
+            <div class="basic_row" @click="basicfunc('saturate')">
                 <span class="left_txt">饱和度效果：</span>
                 <img src="../css/demo/e5.png" class="img_wrapper" alt />
-                <br>
-                <label>Value: <input type="range" value="100" min="-200" max="100" v-model="saturateVal"></label>
-                <br>
             </div>
+            <label class="ml2">Value: <input type="range" value="100" min="-200" max="100" v-model="saturateVal"></label>
             
-            <div class="basic_row" @click="basicfunc('contrast')" style="height:130px;">
+            <div class="basic_row" @click="basicfunc('contrast')">
                 <span class="left_txt">对比度：</span>
                 <img src="../css/demo/e5.png" class="img_wrapper" alt />
-                <br>
-                <label>Value: <input type="range" value="0" min="-255" max="255" v-model="contrastVal"></label>
-                <br>
             </div>
+            <label class="ml2">Value: <input type="range" value="0" min="-255" max="255" v-model="contrastVal"></label>
             <div class="basic_row" @click="basicfunc('removewhite')">
                 <span class="left_txt">去重白效果：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />
-                <br>
-                <label>Threshold: <input type="range" v-model="thresholdVal" value="60" min="0" max="255"></label>
-                <br>
-                <label>Distance: <input type="range" v-model="distanceVal" value="10" min="0" max="255"></label>
+                <img src="../css/demo/e5.png" class="img_wrapper" alt />               
             </div>
+            <label class="ml2">Threshold: <input type="range" v-model="thresholdVal" value="60" min="0" max="255"></label>
+            <label class="ml2">Distance: <input type="range" v-model="distanceVal" value="10" min="0" max="255"></label>
         </div>
     </div>
 </template>

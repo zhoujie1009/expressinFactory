@@ -1,6 +1,6 @@
 <template>
   <div class="edit_area">
-  	<canvas id="canvas" width="800" height="500"></canvas>
+  	<canvas id="canvas" width="800" height="580"></canvas>
   </div>
 </template>
 <script type="text/javascript">
@@ -11,12 +11,8 @@
     var copyCanvas = document.getElementById('copyCanvas');
     copyCanvas.addEventListener('click', function(e){
          var target = canvas.getActiveObject();
-         debugger
          if(target){
-            target.index = window.globaIndex;
-            window.globaIndex += 1;
-         }else{
-            return;
+            target.moveTo(canvas._objects.length);
          }
     }, false);
   }
