@@ -4,11 +4,11 @@
             <div class="body_row">
                 <div id="drawing-mode-options">
                     <div class="effect_adjust">
-                        <span class="adjust_txt">开启涂鸦:</span>
+                        <span class="adjust_txt">&nbsp;开启涂鸦:</span>
                         <input type="checkbox" id="checkbox" v-model="modelChecked" style="margin-left:-60px;margin-top:8px;border-radius: 30px">
                     </div>
                     <div class="effect_adjust">
-                        <span class="adjust_txt">涂鸦笔:</span>
+                        <span class="adjust_txt">&nbsp;&nbsp;&nbsp;&nbsp;涂鸦笔:</span>
                         <select style="color:black;margin-left:-60px;" v-model="selectMode">
                             <option v-for="mode in modes">
                                 {{mode}}    
@@ -16,24 +16,24 @@
                         </select>
                     </div>
                     <div class="effect_adjust">
-                        <span class="adjust_txt">线条颜色:</span>
+                        <span class="adjust_txt">&nbsp;&nbsp;线条颜色:</span>
                         <div class="colorInp-wrap">
                           <input type="color" value="#fff" v-model="lineColor" class="colorInp">
                         </div>
                     </div>
                     <div class="effect_adjust">
-                        <span class="adjust_txt">阴影颜色:</span>
+                        <span class="adjust_txt">&nbsp;&nbsp;阴影颜色:</span>
                         <div class="colorInp-wrap">
                             <input type="color" value="#005E7A" v-model="shadowColor" class="colorInp">
                         </div>
                     </div>
                     <div class="effect_adjust">
-                        <span class="adjust_txt">线条宽度:</span>
+                        <span class="adjust_txt">&nbsp;&nbsp;线条宽度:</span>
                         <span class="info dn">{{lineWidth}}</span>
                         <input type="range" value="30" min="0" max="50" v-model="lineWidth">
                     </div>
                     <div class="effect_adjust">
-                        <span class="adjust_txt">阴影宽度:</span>
+                        <span class="adjust_txt">&nbsp;&nbsp;阴影宽度:</span>
                         <span class="info dn">{{shadowWidth}}</span>
                         <input type="range" value="0" min="0" max="50" v-model="shadowWidth">
                     </div>
