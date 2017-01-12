@@ -88,7 +88,7 @@ body,div {
 	border: 1px solid #ddd;
 	margin-top: 10px;
 	box-shadow: 0px 5px 5px #eee;
-  background: url('static/animate.gif');
+  background: url('static/image/animate.gif');
 }
 .magic_area{
 	flex: 1;
@@ -155,7 +155,7 @@ body,div {
     z-index: 2;
 }
 .importImg{
-  background: url('static/bg1.png');
+  background: url('static/image/bg1.png');
   cursor:pointer;
   margin-top: 5px;
 }
