@@ -9,10 +9,6 @@
                 <span class="left_txt">灰度效果：</span>
                 <img src="../css/demo/e5.png" class="img_wrapper" alt />
             </div>
-	        <div class="basic_row" @click="basicfunc('pixelate')">
-                <span class="left_txt">马赛克效果：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />
-            </div>
             <div class="basic_row" @click="basicfunc('emboss')">
                 <span class="left_txt">浮雕效果：</span>
                 <img src="../css/demo/e5.png" class="img_wrapper" alt />
@@ -23,6 +19,10 @@
             </div>
             <div class="basic_row" @click="basicfunc('invert')">
                 <span class="left_txt">反相效果：</span>
+                <img src="../css/demo/e5.png" class="img_wrapper" alt />
+            </div>
+            <div class="basic_row" @click="basicfunc('pixelate')">
+                <span class="left_txt">马赛克效果：</span>
                 <img src="../css/demo/e5.png" class="img_wrapper" alt />
             </div>
         </div>

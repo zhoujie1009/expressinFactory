@@ -175,3 +175,17 @@ body,div {
   border-radius:10px;
   border:none;
 }
+.effect_adjust{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+.adjust_txt {
+  width: 150px;
+}
+.tuya_txt{
+  width: 100px;
+}
+#drawing-mode-options label{
+  margin-top: 15px;
+}

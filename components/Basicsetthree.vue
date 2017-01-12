@@ -6,27 +6,23 @@
                     <label>开启涂鸦</label>
                     <input type="checkbox" id="checkbox" v-model="modelChecked">
                     <br>
-                    <label for="drawing-mode-selector">Mode:</label>
+                    <label for="drawing-mode-selector">涂鸦笔:</label>
                     <select style="color:black" v-model="selectMode">
                         <option v-for="mode in modes">
                             {{mode}}    
                         </option>                 
                     </select>
                     <br>
-                    <label for="drawing-line-width">Line width:</label>
-                    <span class="info">{{lineWidth}}</span><input type="range" value="30" min="0" max="50" v-model="lineWidth"><br>
-
-                    <label for="drawing-color">Line color:</label>
+                    <label for="drawing-color">线条颜色:</label>
                     <input type="color" value="#005E7A" v-model="lineColor"><br>
-
-                    <label for="drawing-shadow-color">Shadow color:</label>
+                    <label for="drawing-shadow-color">阴影颜色:</label>
                     <input type="color" value="#005E7A" v-model="shadowColor"><br>
-
-                    <label for="drawing-shadow-width">Shadow width:</label>
-                    <span class="info">{{shadowWidth}}</span><input type="range" value="0" min="0" max="50" v-model="shadowWidth"><br>
-
-                    <label for="drawing-shadow-offset">Shadow offset:</label>
-                    <span class="info">{{shadowOffset}}</span><input type="range" value="0" min="0" max="50" v-model="shadowOffset"><br>
+                    <label for="drawing-line-width">线条宽度:</label>
+                    <span class="info">{{lineWidth}}</span><input type="range" value="30" min="0" max="50" v-model="lineWidth">
+                    <label for="drawing-shadow-width">阴影宽度:</label>
+                    <span class="info">{{shadowWidth}}</span><input type="range" value="0" min="0" max="50" v-model="shadowWidth">
+                    <label for="drawing-shadow-offset">阴影偏移量:</label>
+                    <span class="info">{{shadowOffset}}</span><input type="range" value="0" min="0" max="50" v-model="shadowOffset">
                 </div>
             </div>
             

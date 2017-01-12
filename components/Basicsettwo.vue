@@ -1,24 +1,22 @@
 <template>
     <div class="tab_body tab_body1">
         <div class="item_content">
-            
-            <div class="basic_row" @click="basicfunc('saturate')">
-                <span class="left_txt">饱和度效果：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />
-            </div>
-            <label class="ml2">Value: <input type="range" value="100" min="-200" max="100" v-model="saturateVal"></label>
-            
-            <div class="basic_row" @click="basicfunc('contrast')">
-                <span class="left_txt">对比度：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />
-            </div>
-            <label class="ml2">Value: <input type="range" value="0" min="-255" max="255" v-model="contrastVal"></label>
-            <div class="basic_row" @click="basicfunc('removewhite')">
-                <span class="left_txt">去重白效果：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />               
-            </div>
-            <label class="ml2">Threshold: <input type="range" v-model="thresholdVal" value="60" min="0" max="255"></label>
-            <label class="ml2">Distance: <input type="range" v-model="distanceVal" value="10" min="0" max="255"></label>
+            <label  @click="basicfunc('saturate')" class="effect_adjust">
+                <span class="adjust_txt">饱和度调节：</span>
+                <input type="range" value="100" min="-200" max="100" v-model="saturateVal" class="adjust">
+            </label>
+            <label  @click="basicfunc('contrast')" class="effect_adjust">
+                <span class="adjust_txt">对比度调节：</span>
+                <input type="range" value="0" min="-255" max="255" v-model="contrastVal">
+            </label>
+            <label  @click="basicfunc('removewhite')" class="effect_adjust">
+                <span class="adjust_txt">曝光度调节: </span>
+                <input type="range" v-model="thresholdVal" value="60" min="0" max="255">
+            </label>
+            <label  @click="basicfunc('removewhite')" class="effect_adjust">
+                <span class="adjust_txt">补光度调节: </span>
+                <input type="range" v-model="distanceVal" value="10" min="0" max="255">
+            </label>
         </div>
     </div>
 </template>
