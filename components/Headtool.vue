@@ -3,10 +3,10 @@
         <span class="btn_item importImg mr40">
           <input type="file" id="addImg" class="addImg" @change="setImg()">
         </span>
-        <span class="btn_item mr40" @click="rasterize()"><i class="fa fa-sign-out mr10"></i>导出</span> 
-        <span class="btn_item mr40" @click="drop()"><i class="fa fa-crop mr10"></i>裁剪</span>
-        <span class="btn_item mr40" @click="clearCanvas()"><i class="fa fa-square-o mr10"></i>清空</span>    
+        <span class="btn_item mr40" @click="rasterize()"><i class="fa fa-sign-out mr10"></i>导出</span>
         <span class="btn_item mr40" @click="addText()"><i class="fa fa-text-width mr10"></i>文字</span> 
+        <span class="btn_item mr40" @click="drop()"><i class="fa fa-crop mr10"></i>裁剪</span>
+        <span class="btn_item mr40" @click="clearCanvas()"><i class="fa fa-trash mr10"></i>清空</span>    
     </div>
 	<div class="modal fade bs-example-modal-lg in" id="modalBox">
       <div class="modal-backdrop fade in" style="z-index:0;"></div>
