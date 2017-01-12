@@ -159,6 +159,9 @@ body,div {
   cursor:pointer;
   margin-top: 5px;
 }
+.importImg:hover{
+  background: url('static/image/bg1-hover.png');
+}
 .dn{
   display:none;
 }
@@ -190,4 +193,22 @@ body,div {
 }
 #drawing-mode-options label{
   margin-top: 15px;
+}
+.colorInp{
+  position:absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+  padding:0;
+}
+.colorInp-wrap{
+  border:3px solid #f00;
+  position: relative;
+  margin:5px auto 0 -58px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #000;
 }
