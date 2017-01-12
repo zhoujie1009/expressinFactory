@@ -62,6 +62,7 @@
                 canvas.add(text);
             },
             setImg(){
+                var editArea = document.getElementById('editArea').style.backgroundImage="url()";
                 var imgUrl = this.getObjectURL(document.getElementById('addImg').files[0]);
                 var randomVal1 = Math.random();
                 var randomVal2 = Math.random();

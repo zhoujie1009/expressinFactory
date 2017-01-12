@@ -11,7 +11,6 @@
     </div>
 </template>
 
-
 <script>
 import Sidertool from './Sidertool.vue'
 import Headtool from './Headtool.vue'

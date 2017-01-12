@@ -1,5 +1,5 @@
 <template>
-  <div class="edit_area">
+  <div class="edit_area" id="editArea">
   	<canvas id="canvas" width="925" height="585"></canvas>
   </div>
 </template>
