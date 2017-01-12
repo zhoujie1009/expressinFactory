@@ -1,6 +1,6 @@
 <template>
   <div class="edit_area">
-  	<canvas id="canvas" width="800" height="580"></canvas>
+  	<canvas id="canvas" width="925" height="585"></canvas>
   </div>
 </template>
 <script type="text/javascript">
