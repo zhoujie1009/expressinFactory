@@ -1,29 +1,29 @@
 <template>
     <div class="tab_body tab_body1">
         <div class="item_content">
-            <div class="basic_row" @click="basicfunc('origin')">
+            <div class="basic_row selected" @click="basicfunc('origin')">
                 <span class="left_txt">原图效果：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />
+                <img src="../static/image/img.png" class="img_wrapper" />
             </div>
             <div class="basic_row" @click="basicfunc('grayscale')">
                 <span class="left_txt">灰度效果：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />
+                <img src="../static/image/img1.png" class="img_wrapper"/>
             </div>
             <div class="basic_row" @click="basicfunc('emboss')">
                 <span class="left_txt">浮雕效果：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />
+                <img src="../static/image/img2.png" class="img_wrapper"/>
             </div>
             <div class="basic_row" @click="basicfunc('sharpen')">
                 <span class="left_txt">锐化效果：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />
+                <img src="../static/image/img3.png" class="img_wrapper" />
             </div>
             <div class="basic_row" @click="basicfunc('invert')">
                 <span class="left_txt">反相效果：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />
+                <img src="../static/image/img4.png" class="img_wrapper" />
             </div>
             <div class="basic_row" @click="basicfunc('pixelate')">
                 <span class="left_txt">马赛克效果：</span>
-                <img src="../css/demo/e5.png" class="img_wrapper" alt />
+                <img src="../static/image/img5.png" class="img_wrapper" />
             </div>
         </div>
     </div>
