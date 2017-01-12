@@ -10,11 +10,11 @@
                 <input type="range" value="0" min="-255" max="255" v-model="contrastVal">
             </label>
             <label  @click="basicfunc('removewhite')" class="effect_adjust">
-                <span class="adjust_txt">曝光度调节: </span>
+                <span class="adjust_txt">曝光度调节：</span>
                 <input type="range" v-model="thresholdVal" value="60" min="0" max="255">
             </label>
             <label  @click="basicfunc('removewhite')" class="effect_adjust">
-                <span class="adjust_txt">补光度调节: </span>
+                <span class="adjust_txt">补光度调节：</span>
                 <input type="range" v-model="distanceVal" value="10" min="0" max="255">
             </label>
         </div>
