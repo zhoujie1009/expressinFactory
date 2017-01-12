@@ -18,7 +18,7 @@ body,div {
 .wrapper{
 	display: flex;
 	flex-direction: column;
-	height: 795px;
+	height: 700px;
 }
 .row{
 	display: flex;
@@ -83,7 +83,7 @@ body,div {
   color: red;
 }
 .edit_area{
-	height: 685px;
+	height: 585px;
 	width: 925px;
 	border: 1px solid #ddd;
 	margin-top: 10px;
@@ -91,7 +91,7 @@ body,div {
 }
 .magic_area{
 	flex: 1;
-	height: 745px;
+	height: 645px;
 	display: flex;
 	flex-direction: column;
 	font-size: 14px;
@@ -107,6 +107,7 @@ body,div {
 	border-bottom: 3px solid #293a42;	
 	background-color: #293a42;
 	color: #fff;
+  justify-content: space-around;
 }
 .tab_item{
 	padding-left: 10px;
