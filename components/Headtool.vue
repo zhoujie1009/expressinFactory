@@ -163,7 +163,6 @@
                     _this.modalImg.onload = function() {
                         this.width = _this.modalImgw;
                         this.height = _this.modalImgh;
-                        // 这里主要是懂得canvas与图片的裁剪之间的关系位置
                         _this.modalCtx.drawImage(this, _this.modalPleft, _this.modalPtop, this.width, this.height);
                         var base64 = _this.modalCanvas.toDataURL('image/jpg', 1);  
                         window.canvas.clear();
@@ -188,7 +187,7 @@
                         this.width = _this.modalImgw;
                         this.height = _this.modalImgh;
                         _this.modalCtx.drawImage(this, _this.modalPleft, _this.modalPtop, this.width, this.height);
-                        var base64 = canvas.toDataURL('image/jpg', 1);
+                        var base64 = _this.modalCanvas.toDataURL('image/jpg', 1);
                         var preWindow = window.open(base64);
                         _this.saveAs(base64,"new.png");
                     }
