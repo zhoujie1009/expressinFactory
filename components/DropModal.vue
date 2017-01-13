@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-9">
         <div class="img-container" id="drop_img">
-          <img src="../css/demo/e5.png" alt />
+          <img src="../static/image/img.png" alt />
         </div>
       </div>
       <div class="col-md-3">

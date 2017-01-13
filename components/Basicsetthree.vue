@@ -27,17 +27,17 @@
                             <input type="color" value="#005E7A" v-model="shadowColor" class="colorInp">
                         </div>
                     </div>
-                    <div class="effect_adjust">
+                    <div class="effect_adjust" >
                         <span class="adjust_txt">&nbsp;&nbsp;线条宽度:</span>
                         <span class="info dn">{{lineWidth}}</span>
-                        <input type="range" value="30" min="0" max="50" v-model="lineWidth">
+                        <input type="range" value="30" min="0" max="50" v-model="lineWidth" title="{{lineWidth}}"> 
                     </div>
-                    <div class="effect_adjust">
+                    <div class="effect_adjust" title="{{shadowWidth}}">
                         <span class="adjust_txt">&nbsp;&nbsp;阴影宽度:</span>
                         <span class="info dn">{{shadowWidth}}</span>
                         <input type="range" value="0" min="0" max="50" v-model="shadowWidth">
                     </div>
-                    <div class="effect_adjust">
+                    <div class="effect_adjust" title="{{shadowOffset}}">
                         <span class="adjust_txt">阴影偏移量:</span>
                         <span class="info dn">{{shadowOffset}}</span>
                         <input type="range" value="0" min="0" max="50" v-model="shadowOffset">

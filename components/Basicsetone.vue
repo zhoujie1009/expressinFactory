@@ -1,27 +1,27 @@
 <template>
     <div class="tab_body tab_body1">
         <div class="item_content">
-            <div class="basic_row selected" @click="basicfunc('origin')">
+            <div class="basic_row" v-bind:class="[filterType === 'origin' ? 'selected' :'']" @click="basicfunc('origin')">
                 <span class="left_txt">原图效果：</span>
                 <img src="../static/image/img.png" class="img_wrapper" />
             </div>
-            <div class="basic_row" @click="basicfunc('grayscale')">
+            <div class="basic_row" v-bind:class="[filterType === 'grayscale' ? 'selected' :'']" @click="basicfunc('grayscale')">
                 <span class="left_txt">灰度效果：</span>
                 <img src="../static/image/img1.png" class="img_wrapper"/>
             </div>
-            <div class="basic_row" @click="basicfunc('emboss')">
+            <div class="basic_row" v-bind:class="[filterType == 'emboss' ? 'selected' :'']" @click="basicfunc('emboss')">
                 <span class="left_txt">浮雕效果：</span>
                 <img src="../static/image/img2.png" class="img_wrapper"/>
             </div>
-            <div class="basic_row" @click="basicfunc('sharpen')">
+            <div class="basic_row" v-bind:class="[filterType == 'sharpen' ? 'selected' :'']" @click="basicfunc('sharpen')">
                 <span class="left_txt">锐化效果：</span>
                 <img src="../static/image/img3.png" class="img_wrapper" />
             </div>
-            <div class="basic_row" @click="basicfunc('invert')">
+            <div class="basic_row" v-bind:class="[filterType == 'invert' ? 'selected' :'']" @click="basicfunc('invert')">
                 <span class="left_txt">反相效果：</span>
                 <img src="../static/image/img4.png" class="img_wrapper" />
             </div>
-            <div class="basic_row" @click="basicfunc('pixelate')">
+            <div class="basic_row" v-bind:class="[filterType == 'pixelate' ? 'selected' :'']" @click="basicfunc('pixelate')">
                 <span class="left_txt">马赛克效果：</span>
                 <img src="../static/image/img5.png" class="img_wrapper" />
             </div>
@@ -33,7 +33,7 @@
         data(){
             return {
 		        f:fabric.Image.filters,
-                filterType:""
+                filterType:'origin'
             }
         },
         watch:{

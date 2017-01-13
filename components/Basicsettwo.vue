@@ -3,19 +3,19 @@
         <div class="item_content">
             <label  @click="basicfunc('saturate')" class="effect_adjust">
                 <span class="adjust_txt">饱和度调节：</span>
-                <input type="range" value="100" min="-200" max="100" v-model="saturateVal" class="adjust">
+                <input type="range" value="100" min="-200" max="100" v-model="saturateVal" class="adjust" title="saturateVal">
             </label>
             <label  @click="basicfunc('contrast')" class="effect_adjust">
                 <span class="adjust_txt">对比度调节：</span>
-                <input type="range" value="0" min="-255" max="255" v-model="contrastVal">
+                <input type="range" value="0" min="-255" max="255" v-model="contrastVal" title="{{contrastVal}}"> 
             </label>
             <label  @click="basicfunc('removewhite')" class="effect_adjust">
                 <span class="adjust_txt">曝光度调节：</span>
-                <input type="range" v-model="thresholdVal" value="60" min="0" max="255">
+                <input type="range" v-model="thresholdVal" value="60" min="0" max="255" title="{{thresholdVal}}">
             </label>
             <label  @click="basicfunc('removewhite')" class="effect_adjust">
                 <span class="adjust_txt">补光度调节：</span>
-                <input type="range" v-model="distanceVal" value="10" min="0" max="255">
+                <input type="range" v-model="distanceVal" value="10" min="0" max="255" title="{{distanceVal}}">
             </label>
         </div>
     </div>
