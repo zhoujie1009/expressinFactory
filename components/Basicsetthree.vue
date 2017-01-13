@@ -102,12 +102,12 @@
 
                let squarePatternBrush = new fabric.PatternBrush(canvas);
                squarePatternBrush.getPatternSrc = function(){
-                   let squareWidth = 10,suqareDistance = 2;
+                   let squareWidth = 10,squareDistance = 2;
                    let patternCanvas = fabric.document.createElement('canvas');
                    patternCanvas.width = patternCanvas.height = squareWidth+squareDistance;
                    let ctx = patternCanvas.getContext('2d');
                    ctx.fillStyle = this.lineColor;
-                   ctx.fillRect(0,0,squareWidth,quareWidth);
+                   ctx.fillRect(0,0,squareWidth,squareWidth);
                    return patternCanvas;
                }
 
@@ -115,18 +115,18 @@
 
                let diamondPatternBrush = new fabric.PatternBrush(canvas);
                diamondPatternBrush.getPatternSrc = ()=>{
-                   let squareWidth = 10,suqareDistance = 5;
+                   let squareWidth = 10,squareDistance = 5;
                    let patternCanvas = fabric.document.createElement('canvas');
                    let rect = new fabric.Rect({
                        width:squareWidth,
-                       height:suqareWidth,
+                       height:squareWidth,
                        angle:45,
-                       fill:this.lineColors
+                       fill:this.lineColor
                    });
                    
                    var canvasWidth = rect.getBoundingRectWidth();
                    patternCanvas.width = patternCanvas.height = canvasWidth + squareDistance;
-                   rect.set({left:canasWidth / 2, top: canvasWidth / 2});
+                   rect.set({left:canvasWidth / 2, top: canvasWidth / 2});
 
                    var ctx = patternCanvas.getContext('2d');
                    rect.render(ctx);
