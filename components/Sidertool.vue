@@ -13,10 +13,9 @@
 </template>
 
 <script> 
-import Basicsetone from './Basicsetone.vue'
-import Basicsettwo from './Basicsettwo.vue'
-import Basicsetthree from './Basicsetthree.vue'
-//import Basicsetfour from './Basicsetfour.vue'
+import Basicset from './Basicset.vue'
+import Advanceset from './Advanceset.vue'
+import Tuyaset from './Tuyaset.vue'
 
 export default{
     data(){
@@ -37,9 +36,9 @@ export default{
         }
     },
     components:{
-        'set_tab_0':Basicsetone,
-        'set_tab_1':Basicsettwo,
-        'set_tab_2':Basicsetthree
+        'set_tab_0':Basicset,
+        'set_tab_1':Advanceset,
+        'set_tab_2':Tuyaset
     }
 }
 </script>
