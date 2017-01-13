@@ -43,9 +43,11 @@
             DropModal
         },
         methods:{
+            //清空画布
             clearCanvas(){
               canvas.clear();
             },
+            //添加文字
             addText(){
                 let text = new fabric.IText('此处编辑文字',{
                     left: 10,
@@ -61,6 +63,7 @@
                 });
                 canvas.add(text);
             },
+            //导入图片
             setImg(){
                 var editArea = document.getElementById('editArea').style.backgroundImage="url()";
                 var imgUrl = this.getObjectURL(document.getElementById('addImg').files[0]);
@@ -68,20 +71,10 @@
                 var randomVal2 = Math.random();
                 this.addImage(imgUrl,Math.min(randomVal1, randomVal2),Math.max(randomVal1, randomVal2));
             },
-            getObjectURL(file) {
-                var url = null;
-                if (window.createObjectURL != undefined) {
-                    url = window.createObjectURL(file)
-                } else if (window.URL != undefined) {
-                    url = window.URL.createObjectURL(file)
-                } else if (window.webkitURL != undefined) {
-                    url = window.webkitURL.createObjectURL(file)
-                }
-                return url
-            },
+            //运用fabric把图片做成随机大小导入canvas画布
             addImage(imgAdd, minScale, maxScale) {
                 var _this = this;
-                var coord = _this.getRandomLeftTop();
+                //var coord = _this.getRandomLeftTop();
                 fabric.Image.fromURL(imgAdd, function(image) {
                   image.set({
                     left: 0,
@@ -93,6 +86,18 @@
                   canvas.add(image);
                 });
             },
+            //导入时获取图片本地路径
+            getObjectURL(file) {
+                var url = null;
+                if (window.createObjectURL != undefined) {
+                    url = window.createObjectURL(file)
+                } else if (window.URL != undefined) {
+                    url = window.URL.createObjectURL(file)
+                } else if (window.webkitURL != undefined) {
+                    url = window.webkitURL.createObjectURL(file)
+                }
+                return url
+            },
             getRandomNum(min, max) {
                 return Math.random() * (max - min) + min;
             },
@@ -103,6 +108,7 @@
                     top: fabric.util.getRandomInt(0 + offset, 500 - offset)
                 };
             },
+            //导出并下载图片
             rasterize() {
                 var _this = this;
                 if (!fabric.Canvas.supports('toDataURL')) {
@@ -112,11 +118,7 @@
                     _this.saveAs(canvas.toDataURL('png'),"new.png");
                 }
             },
-            rasterizeSVG() {
-                window.open(
-                  'data:image/svg+xml;utf8,' +
-                  encodeURIComponent(canvas.toSVG()));
-            },
+            //裁剪图片
             drop(){
                 var canvasData = canvas.toDataURL('png');
                 document.getElementById('drop_canvas').innerHTML = DropModal.template;
@@ -125,10 +127,11 @@
                 this.handleDrop();
                 this.handleClick();
             },
+            //关闭裁剪框
             closeModal(){
                 document.getElementById('modalBox').style.display = 'none';
             },
-            //裁剪图片时临时保存的一些数据
+            //裁剪图片时临时保存的一些数据 宽高
             handModalImg(){
               var _this = this;
               var $image = $('.img-container > img');
