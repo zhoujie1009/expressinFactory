@@ -215,10 +215,11 @@
                 $dataHeight = $('#dataHeight'),
                 $dataWidth = $('#dataWidth'),
                 $dataRotate = $('#dataRotate'),
+                //设置初始参数
                 options = {
-                  aspectRatio: 16 / 9,
-                  preview: '.img-preview',
-                  crop: function (data) {
+                  aspectRatio: NaN,   //设置剪裁容器的比例
+                  preview: '.img-preview', //添加额外的元素（容器）的预览
+                  crop: function (data) {  //当改变剪裁容器或图片时的事件函数
                     $dataX.val(Math.round(data.x));
                     $dataY.val(Math.round(data.y));
                     $dataHeight.val(Math.round(data.height));
@@ -227,25 +228,25 @@
                   }
                 };
                 $image.on({
-                  'build.cropper': function (e) {
+                  'build.cropper': function (e) { //当cropper对象开始加载图片的时候触发该事件
                     console.log(e.type);
                   },
-                  'built.cropper': function (e) {
+                  'built.cropper': function (e) {  //当cropper对象构建完成时触发该事件
                     console.log(e.type);
                   },
                   'dragstart.cropper': function (e) {
                     console.log(e.type, e.dragType);
                   },
-                  'dragmove.cropper': function (e) {
+                  'dragmove.cropper': function (e) { //当剪裁区域发生改变时触发
                     console.log(e.type, e.dragType);
                   },
                   'dragend.cropper': function (e) {
                     console.log(e.type, e.dragType);
                   },
-                  'zoomin.cropper': function (e) {
+                  'zoomin.cropper': function (e) { //当cropper对象开始放大canvas时触发
                     console.log(e.type);
                   },
-                  'zoomout.cropper': function (e) {
+                  'zoomout.cropper': function (e) { //当cropper对象开始缩小canvas时触发
                     console.log(e.type);
                   }
                 }).cropper(options);

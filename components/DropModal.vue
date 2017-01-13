@@ -14,7 +14,7 @@
           <div class="img-preview preview-xs"></div>
         </div>
         <div class="btn-group btn-group-justified" data-toggle="buttons">
-          <label class="btn btn-primary active" data-method="setAspectRatio" data-option="1.7777777777777777" title="Set Aspect Ratio">
+          <label class="btn btn-primary" data-method="setAspectRatio" data-option="1.7777777777777777" title="Set Aspect Ratio">
             <input class="sr-only" id="aspestRatio1" name="aspestRatio" value="1.7777777777777777" type="radio">
             <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setAspectRatio&quot;, 16 / 9)">
               16:9
@@ -38,7 +38,7 @@
               2:3
             </span>
           </label>
-          <label class="btn btn-primary" data-method="setAspectRatio" data-option="NaN" title="Set Aspect Ratio">
+          <label class="btn btn-primary active" data-method="setAspectRatio" data-option="NaN" title="Set Aspect Ratio">
             <input class="sr-only" id="aspestRatio5" name="aspestRatio" value="NaN" type="radio">
             <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setAspectRatio&quot;, NaN)">
               Free
